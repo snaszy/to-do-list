@@ -8,6 +8,7 @@ const loadNav = () => {
 
     const newButton = document.createElement('button');
     newButton.id = 'new-button';
+    newButton.textContent = 'New';
     navDiv.appendChild(newButton);
 }
 

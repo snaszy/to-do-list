@@ -9,6 +9,11 @@ const loadList = () => {
     listTitle.id = 'list-title';
     listTitle.textContent = 'Todays Schedule';
     listDiv.appendChild(listTitle);
+
+    const listObject = document.createElement('h2');
+    listObject.id = 'list-object';
+    listObject.textContent = 'First Project';
+    listDiv.appendChild(listObject);
 }
 
 export { loadList }
