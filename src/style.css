@@ -1,0 +1,17 @@
+#header-div {
+    margin: 0;
+    padding: 0;
+    height: 5vh;
+    background-color: red;
+}
+#nav-div {
+    float: left;
+    width: 20vw;
+    height: 95vh;
+    background-color:lightgray;
+}
+#list-div {
+    float: right;
+    width: 70vw;
+    height: 95vh;
+}
