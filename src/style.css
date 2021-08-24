@@ -1,8 +1,10 @@
 #header-div {
-    margin: 0;
-    padding: 0;
-    height: 5vh;
     background-color: red;
+}
+#header-logo {
+    padding: 10px;
+    src: url('./images/logo.png');
+    max-width: 5vw;
 }
 #nav-div {
     float: left;
@@ -14,4 +16,12 @@
     float: right;
     width: 70vw;
     height: 95vh;
+}
+button {
+    border-style: none;
+    color: white;
+    background: gray;
+}
+li {
+    font-size: .7em;
 }

@@ -1,16 +1,7 @@
-const loadDOM = () => {
+import Logo from './images/logo.png';
+
+const loadDOM = (task, project) => {
     const mainHeader = document.getElementById('content');
-
-    const loadNav = () => {
-        const navDiv = document.createElement('div');
-        navDiv.id = 'nav-div';
-        mainHeader.appendChild(navDiv)
-
-        const newButton = document.createElement('button');
-        newButton.id = 'new-button';
-        newButton.textContent = 'New';
-        navDiv.appendChild(newButton);
-    };
 
     const loadHeader = () => {
         const headerDiv = document.createElement('div');
@@ -19,24 +10,50 @@ const loadDOM = () => {
 
         const headerLogo = document.createElement('img');
         headerLogo.id = 'header-logo';
-        headerLogo.src = './logo.png';
+        headerLogo.src = Logo;
         headerDiv.appendChild(headerLogo);
     };
 
-    const loadList = () => {
-        const listDiv = document.createElement('div');
-        listDiv.id = 'list-div';
-        mainHeader.appendChild(listDiv)
+    const loadNav = (project) => {
+        const projectDiv = document.createElement('div');
+        projectDiv.id = 'nav-div';
+        mainHeader.appendChild(projectDiv)
 
-        const listTitle = document.createElement('h1');
-        listTitle.id = 'list-title';
-        listTitle.textContent = 'Todays Schedule';
-        listDiv.appendChild(listTitle);
+        const projectTitle = document.createElement('h2');
+        projectTitle.id = 'project-title';
+        projectTitle.textContent = 'Projects';
+        projectDiv.appendChild(projectTitle);
+        
+        const projectSample = document.createElement('li');
+        projectSample.id = 'project-title';
+        projectSample.textContent = 'Projects';
+        projectTitle.appendChild(projectSample);
 
-        const listObject = document.createElement('h2');
-        listObject.id = 'list-object';
-        listObject.textContent = 'First Project';
-        listDiv.appendChild(listObject);
+        const newProject = document.createElement('button');
+        newProject.id = 'new-project';
+        newProject.textContent = 'New Project';
+        projectDiv.appendChild(newProject);
+    };
+
+    const loadList = (task) => {
+        const taskDiv = document.createElement('div');
+        taskDiv.id = 'list-div';
+        mainHeader.appendChild(taskDiv)
+
+        const taskTitle = document.createElement('h2');
+        taskTitle.id = 'task-title';
+        taskTitle.textContent = 'Tasks';
+        taskDiv.appendChild(taskTitle);
+        
+        const taskSample = document.createElement('li');
+        taskSample.id = 'task-sample';
+        taskSample.textContent = 'Sample';
+        taskTitle.appendChild(taskSample);
+
+        const newTask = document.createElement('button');
+        newTask.id = 'new-task';
+        newTask.textContent = 'New Task';
+        taskDiv.appendChild(newTask);
     };
 
     const initiatePage = (() => {
