@@ -1,28 +1,14 @@
-const getProjects = () => {
-    
-
-    const loadHeader = () => {
-        const headerDiv = document.createElement('div');
-        headerDiv.id = 'header-div';
-        mainHeader.appendChild(headerDiv)
-
-        const headerLogo = document.createElement('img');
-        headerLogo.id = 'header-logo';
-        headerLogo.src = './logo.png';
-        headerDiv.appendChild(headerLogo);
+const createTask = (name, description, date, priority) => {
+    return {
+        name,
+        description,
+        date,
+        priority,
+        checked: false,
+        id: Date.now().toString(),
     };
 };
-const getToDo = (name, description, date, priority) => {
-    const mainHeader = document.getElementById('content');
 
-    const loadHeader = () => {
-        const headerDiv = document.createElement('div');
-        headerDiv.id = 'header-div';
-        mainHeader.appendChild(headerDiv)
-
-        const headerLogo = document.createElement('img');
-        headerLogo.id = 'header-logo';
-        headerLogo.src = './logo.png';
-        headerDiv.appendChild(headerLogo);
-    };
-};
+const addTask = (array, task) => {
+    array.push(task);
+}

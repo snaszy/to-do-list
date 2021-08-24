@@ -25,8 +25,8 @@ const loadDOM = (task, project) => {
         projectDiv.appendChild(projectTitle);
         
         const projectSample = document.createElement('li');
-        projectSample.id = 'project-title';
-        projectSample.textContent = 'Projects';
+        projectSample.id = 'project-sample';
+        projectSample.textContent = 'Sample Project';
         projectTitle.appendChild(projectSample);
 
         const newProject = document.createElement('button');
@@ -47,7 +47,7 @@ const loadDOM = (task, project) => {
         
         const taskSample = document.createElement('li');
         taskSample.id = 'task-sample';
-        taskSample.textContent = 'Sample';
+        taskSample.textContent = 'Sample Task';
         taskTitle.appendChild(taskSample);
 
         const newTask = document.createElement('button');

@@ -8,19 +8,23 @@
 }
 #nav-div {
     float: left;
-    width: 20vw;
+    width: 30vw;
     height: 95vh;
     background-color:lightgray;
 }
 #list-div {
     float: right;
-    width: 70vw;
+    width: 60vw;
     height: 95vh;
 }
 button {
+    border-radius: 5px;
     border-style: none;
     color: white;
     background: gray;
+}
+button:hover {
+    background: red;
 }
 li {
     font-size: .7em;
