@@ -1,4 +1,6 @@
 import Logo from './images/logo.png';
+import Task from './task.js'
+import Project from './project.js'
 
 const loadDOM = (task, project) => {
     const mainHeader = document.getElementById('content');
