@@ -21,7 +21,7 @@ const loadDOM = (task, project) => {
         projectDiv.id = 'nav-div';
         mainHeader.appendChild(projectDiv)
 
-        const projectTitle = document.createElement('h2');
+        const projectTitle = document.createElement('h1');
         projectTitle.id = 'project-title';
         projectTitle.textContent = 'Projects';
         projectDiv.appendChild(projectTitle);
@@ -42,7 +42,7 @@ const loadDOM = (task, project) => {
         taskDiv.id = 'list-div';
         mainHeader.appendChild(taskDiv)
 
-        const taskTitle = document.createElement('h2');
+        const taskTitle = document.createElement('h1');
         taskTitle.id = 'task-title';
         taskTitle.textContent = 'Tasks';
         taskDiv.appendChild(taskTitle);

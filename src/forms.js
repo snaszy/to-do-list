@@ -4,6 +4,7 @@ const openForm = () => {
     const taskForm = (task) => {
         const blackBackground = document.createElement('div');
         blackBackground.id = 'background';
+        blackBackground.classList.add('black-background');
         mainHeader.appendChild(blackBackground);
         
         const taskDiv = document.createElement('div');
@@ -53,6 +54,9 @@ const openForm = () => {
         closeButton.id = 'close-button';
         closeButton.textContent = 'Close';
         taskFormWindow.appendChild(closeButton);
+        closeButton.addEventListener('click', ()=> {
+            blackBackground.classList.toggle('no-background');
+        })
     };
 
     const projectForm = (project) => {
