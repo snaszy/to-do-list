@@ -4,6 +4,9 @@ const createProject = (name) => {
         tasks: [],
     }
 }
+
 const addProject = (array, project) => {
     array.push(project);
 }
+
+export { createProject, addProject };

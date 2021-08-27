@@ -1,3 +1,8 @@
+import { createTask } from './task.js';
+import { addTask } from './task.js';
+import { submitProject } from './index.js';
+import { addProject } from './project.js';
+
 const openForm = () => {
     const mainHeader = document.getElementById('content');
 
@@ -50,12 +55,30 @@ const openForm = () => {
         taskDateDueInput.setAttribute('placeholder','Date');
         taskDateDueLabel.appendChild(taskDateDueInput);
 
-        const closeButton = document.createElement('button');
-        closeButton.id = 'close-button';
-        closeButton.textContent = 'Close';
-        taskFormWindow.appendChild(closeButton);
-        closeButton.addEventListener('click', ()=> {
+        const buttonDiv = document.createElement('div');
+        buttonDiv.id = 'button-container';
+        taskFormWindow.appendChild(buttonDiv);
+
+        const submitTaskButton = document.createElement('button');
+        submitTaskButton.id = 'task-submit';
+        submitTaskButton.value = 'submit';
+        submitTaskButton.textContent = 'submit';
+        buttonDiv.appendChild(submitTaskButton);
+
+        const closeTaskButton = document.createElement('button');
+        closeTaskButton.id = 'close-button';
+        closeTaskButton.textContent = 'Close';
+        buttonDiv.appendChild(closeTaskButton);
+
+        closeTaskButton.querySelector('#close-button')
+        closeTaskButton.addEventListener('click', () => {
             blackBackground.classList.toggle('no-background');
+        })
+
+        submitTaskButton.querySelector('#task-submit')
+        submitTaskButton.addEventListener('click', () => {
+            createTask();
+            addTask();
         })
     };
 
@@ -97,11 +120,24 @@ const openForm = () => {
         projectDetailsInput.setAttribute('placeholder','Details');
         projectDetailsLabel.appendChild(projectDetailsInput);
 
+        const submitProjectButton = document.createElement('button');
+        submitProjectButton.id = 'project-submit';
+        submitProjectButton.textContent = 'Submit';
+        projectFormWindow.appendChild(submitProjectButton);
 
-        const closeButton = document.createElement('button');
-        closeButton.id = 'close-button';
-        closeButton.textContent = 'Close';
-        projectFormWindow.appendChild(closeButton);
+        const closeProjectButton = document.createElement('button');
+        closeProjectButton.id = 'close-project-button';
+        closeProjectButton.textContent = 'Close';
+        projectFormWindow.appendChild(closeProjectButton);
+    
+        closeProjectButton.querySelector('#close-project-button')
+        closeProjectButton.addEventListener('click', () => {
+            blackBackground.classList.toggle('no-background');
+        })
+
+        submitProjectButton.querySelector('#project-submit')
+        submitProjectButton.addEventListener('click', () => {
+        })
     };
 
     return {

@@ -46,6 +46,11 @@
     flex: 2 0px;
     height: 95vh;
 }
+#button-container {
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
 button {
     border-radius: 5px;
     border-style: none;

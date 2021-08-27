@@ -12,3 +12,5 @@ const createTask = (name, description, date, priority) => {
 const addTask = (array, task) => {
     array.push(task);
 }
+export { createTask };
+export { addTask };
