@@ -143,7 +143,8 @@ const openForm = () => {
 
         submitProjectButton.querySelector('#project-submit')
         submitProjectButton.addEventListener('click', () => {
-            submitProject();
+            const name = document.querySelector('#project-name-input');
+            submitProject(name.value);
         })
     };
 

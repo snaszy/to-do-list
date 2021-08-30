@@ -24,14 +24,12 @@ newTaskButton.addEventListener('click', () => {
 });
 
 const submitProject = (project) => {
-    const newProject = createProject(projects);
-    const newProjectElement = addProject(projects, newProject); 
-    loadProject(newProjectElement);
+    const newProject = createProject(project);
+    loadProject(newProject);
 }
 
 const submitTask = (name, details, date) => {
     const newTask = createTask(name, details, date);
-    const newTaskElement = addTask(newTask); 
     loadTask(newTask);
 }
 
