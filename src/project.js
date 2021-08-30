@@ -9,4 +9,7 @@ const addProject = (array, project) => {
     array.push(project);
 }
 
-export { createProject, addProject };
+export { 
+    createProject,
+    addProject 
+};

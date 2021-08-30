@@ -1,10 +1,12 @@
 import { loadDOM } from './DOM.js';
 import { openForm } from './forms.js';
 import { createProject } from './project.js';
-import { addProject } from './projects.js';
+import { addProject } from './project.js';
+import { loadProject } from './DOM.js';
+import { loadTask } from './DOM.js';
 import './style.css';
 
-loadDOM();
+loadDOM()
 
 const newProjectButton = document.querySelector('#new-project');
 const newTaskButton = document.querySelector('#new-task');
@@ -22,9 +24,18 @@ newTaskButton.addEventListener('click', () => {
 });
 
 const submitProject = (project) => {
-    const newProject = createProject(project);
+    const newProject = createProject(projects);
     const newProjectElement = addProject(projects, newProject); 
-    loadDOM();
+    loadProject(newProjectElement);
 }
 
-export { submitProject };
+const submitTask = (name, details, date) => {
+    const newTask = createTask(name, details, date);
+    const newTaskElement = addTask(newTask); 
+    loadTask(newTask);
+}
+
+export { 
+    submitProject,
+    submitTask
+};

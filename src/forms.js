@@ -2,11 +2,12 @@ import { createTask } from './task.js';
 import { addTask } from './task.js';
 import { submitProject } from './index.js';
 import { addProject } from './project.js';
+import { submitTask } from './index.js';
 
 const openForm = () => {
     const mainHeader = document.getElementById('content');
 
-    const taskForm = (task) => {
+    const taskForm = (name, description, date) => {
         const blackBackground = document.createElement('div');
         blackBackground.id = 'background';
         blackBackground.classList.add('black-background');
@@ -61,12 +62,13 @@ const openForm = () => {
 
         const submitTaskButton = document.createElement('button');
         submitTaskButton.id = 'task-submit';
-        submitTaskButton.value = 'submit';
+        submitTaskButton.type = 'button';
         submitTaskButton.textContent = 'submit';
         buttonDiv.appendChild(submitTaskButton);
 
         const closeTaskButton = document.createElement('button');
         closeTaskButton.id = 'close-button';
+        closeTaskButton.type = 'button';
         closeTaskButton.textContent = 'Close';
         buttonDiv.appendChild(closeTaskButton);
 
@@ -77,8 +79,10 @@ const openForm = () => {
 
         submitTaskButton.querySelector('#task-submit')
         submitTaskButton.addEventListener('click', () => {
-            createTask();
-            addTask();
+            const name = document.querySelector('#task-name-input');
+            const details = document.querySelector('#task-name-details');
+            const date = document.querySelector('#task-name-date');
+            submitTask(name.value, details.value, date.value );
         })
     };
 
@@ -122,11 +126,13 @@ const openForm = () => {
 
         const submitProjectButton = document.createElement('button');
         submitProjectButton.id = 'project-submit';
+        submitProjectButton.type = 'button';
         submitProjectButton.textContent = 'Submit';
         projectFormWindow.appendChild(submitProjectButton);
 
         const closeProjectButton = document.createElement('button');
         closeProjectButton.id = 'close-project-button';
+        closeProjectButton.type= 'button';
         closeProjectButton.textContent = 'Close';
         projectFormWindow.appendChild(closeProjectButton);
     
@@ -137,6 +143,7 @@ const openForm = () => {
 
         submitProjectButton.querySelector('#project-submit')
         submitProjectButton.addEventListener('click', () => {
+            submitProject();
         })
     };
 

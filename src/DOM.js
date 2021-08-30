@@ -1,8 +1,7 @@
 import Logo from './images/logo.png';
-import { createTask } from './task.js'
-import Project from './project.js'
 
-const loadDOM = (task, project) => {
+
+const loadDOM = () => {
     const mainHeader = document.getElementById('content');
 
     const loadHeader = () => {
@@ -16,7 +15,7 @@ const loadDOM = (task, project) => {
         headerDiv.appendChild(headerLogo);
     };
 
-    const loadNav = (project) => {
+    const loadNav = () => {
         const projectDiv = document.createElement('div');
         projectDiv.id = 'nav-div';
         mainHeader.appendChild(projectDiv)
@@ -37,7 +36,7 @@ const loadDOM = (task, project) => {
         projectDiv.appendChild(newProject);
     };
 
-    const loadList = (task) => {
+    const loadList = () => {
         const taskDiv = document.createElement('div');
         taskDiv.id = 'list-div';
         mainHeader.appendChild(taskDiv)
@@ -64,4 +63,25 @@ const loadDOM = (task, project) => {
         loadList();
     })();
 };
-export { loadDOM }
+
+const loadProject = (project) => {
+    const projectTitle = document.querySelector('#project-title');
+    
+    const projectSample = document.createElement('li');
+    projectSample.textContent = project;
+    projectTitle.appendChild(projectSample);
+};
+
+const loadTask = (task) => {
+    const taskTitle = document.querySelector('#task-title');
+    
+    const taskSample = document.createElement('li');
+    taskSample.textContent = task.name;
+    taskTitle.appendChild(taskSample);
+};
+
+export { 
+    loadDOM,
+    loadProject,
+    loadTask
+ }

@@ -1,7 +1,7 @@
-const createTask = (name, description, date, priority) => {
+const createTask = (name, details, date, priority) => {
     return {
         name,
-        description,
+        details,
         date,
         priority,
         checked: false,
@@ -12,5 +12,7 @@ const createTask = (name, description, date, priority) => {
 const addTask = (array, task) => {
     array.push(task);
 }
-export { createTask };
-export { addTask };
+export { 
+    createTask,
+    addTask 
+};
