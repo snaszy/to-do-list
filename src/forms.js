@@ -137,10 +137,10 @@ const openForm = () => {
 
         submitTaskButton.querySelector('#task-submit');
         submitTaskButton.addEventListener('click', () => {
-            let name = document.querySelector('#task-name-input');
-            let details = document.querySelector('#task-details-input');
-            let date = document.querySelector('#task-date-input');
-            let priority = document.querySelector('#task-priority-input');
+            const name = document.querySelector('#task-name-input');
+            const details = document.querySelector('#task-details-input');
+            const date = document.querySelector('#task-date-input');
+            const priority = document.querySelector('#task-priority-input');
             submitTask(name.value, details.value, date.value, priority.value);
             blackBackground.classList.toggle('no-background');
         });

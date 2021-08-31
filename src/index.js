@@ -1,11 +1,12 @@
 import { loadDOM } from './DOM.js';
 import { openForm } from './forms.js';
-import { createProject } from './project.js';
+import { clearProjectList, createProject } from './project.js';
 import { createTask } from './task.js';
 import { addProjectArray } from './project.js';
 import { addTaskArray } from './task.js';
 import { appendProject } from './DOM.js';
 import { appendTask } from './DOM.js';
+import { updateProjectList } from './project.js';
 import './style.css';
 
 loadDOM()
@@ -14,7 +15,7 @@ const newProjectButton = document.querySelector('#new-project');
 const newTaskButton = document.querySelector('#new-task');
 
 let allProjects = [{project: 'Sample Project'}];
-console.log(allProjects[0].project)
+// console.log(allProjects[0].project)
 
 newProjectButton.addEventListener('click', () => {
     const newProjectForm = openForm();
@@ -28,8 +29,10 @@ newTaskButton.addEventListener('click', () => {
 
 const submitProject = (project) => {
     const newProject = createProject(project);
+    const projectList = document.querySelector('#project-title');
     addProjectArray(allProjects, newProject);
-    appendProject(project);
+    clearProjectList(projectList);
+    updateProjectList(allProjects);
     saveStorage();
     console.log(allProjects);
 }
