@@ -1,15 +1,15 @@
-const createProject = (name) => {
+const createProject = (project) => {
     return {
-        name,
-        tasks: [],
+        project,
+        allTasks: [],
     }
 }
 
-const addProject = (array, project) => {
+const addProjectArray = (array, project) => {
     array.push(project);
 }
 
 export { 
     createProject,
-    addProject 
+    addProjectArray,
 };

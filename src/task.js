@@ -9,10 +9,11 @@ const createTask = (name, details, date, priority) => {
     };
 };
 
-const addTask = (array, task) => {
+const addTaskArray = (array, task) => {
     array.push(task);
-}
+};
+
 export { 
     createTask,
-    addTask 
+    addTaskArray, 
 };

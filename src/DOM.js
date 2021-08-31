@@ -1,6 +1,5 @@
 import Logo from './images/logo.png';
 
-
 const loadDOM = () => {
     const mainHeader = document.getElementById('content');
 
@@ -64,7 +63,7 @@ const loadDOM = () => {
     })();
 };
 
-const loadProject = (project) => {
+const appendProject = (project) => {
     const projectTitle = document.querySelector('#project-title');
     
     const projectSample = document.createElement('li');
@@ -72,16 +71,16 @@ const loadProject = (project) => {
     projectTitle.appendChild(projectSample);
 };
 
-const loadTask = (task) => {
+const appendTask = (task) => {
     const taskTitle = document.querySelector('#task-title');
     
     const taskSample = document.createElement('li');
-    taskSample.textContent = task.name;
+    taskSample.textContent = task;
     taskTitle.appendChild(taskSample);
 };
 
 export { 
     loadDOM,
-    loadProject,
-    loadTask
+    appendProject,
+    appendTask,
  }
