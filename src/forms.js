@@ -49,10 +49,13 @@ const openForm = () => {
 
         submitProjectButton.querySelector('#project-submit');
         submitProjectButton.addEventListener('click', () => {
-            const name = document.querySelector('#project-name-input');
-            submitProject(name.value);
+            submitProject(projectNameInput.value);
             blackBackground.classList.toggle('no-background');
         });
+
+        const resetInput = () => {
+            
+        }
     };
 
     const taskForm = () => {
@@ -137,11 +140,7 @@ const openForm = () => {
 
         submitTaskButton.querySelector('#task-submit');
         submitTaskButton.addEventListener('click', () => {
-            const name = document.querySelector('#task-name-input');
-            const details = document.querySelector('#task-details-input');
-            const date = document.querySelector('#task-date-input');
-            const priority = document.querySelector('#task-priority-input');
-            submitTask(name.value, details.value, date.value, priority.value);
+            submitTask(taskNameInput.value, taskDetailsInput.value, taskDateDueInput.value, taskPriorityInput.value);
             blackBackground.classList.toggle('no-background');
         });
     };

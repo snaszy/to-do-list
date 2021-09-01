@@ -14,7 +14,7 @@ const loadDOM = () => {
         headerDiv.appendChild(headerLogo);
     };
 
-    const loadNav = () => {
+    const loadProjects = () => {
         const projectDiv = document.createElement('div');
         projectDiv.id = 'nav-div';
         mainHeader.appendChild(projectDiv)
@@ -24,10 +24,14 @@ const loadDOM = () => {
         projectTitle.textContent = 'Projects';
         projectDiv.appendChild(projectTitle);
         
+        const projectList = document.createElement('div');
+        projectList.id = 'project-list';
+        projectDiv.appendChild(projectList);
+        
         const projectSample = document.createElement('li');
         projectSample.id = 'project-sample';
         projectSample.textContent = 'Sample Project';
-        projectTitle.appendChild(projectSample);
+        projectList.appendChild(projectSample);
 
         const newProject = document.createElement('button');
         newProject.id = 'new-project';
@@ -35,7 +39,7 @@ const loadDOM = () => {
         projectDiv.appendChild(newProject);
     };
 
-    const loadList = () => {
+    const loadTasks = () => {
         const taskDiv = document.createElement('div');
         taskDiv.id = 'list-div';
         mainHeader.appendChild(taskDiv)
@@ -45,10 +49,14 @@ const loadDOM = () => {
         taskTitle.textContent = 'Tasks';
         taskDiv.appendChild(taskTitle);
         
+        const taskList = document.createElement('div');
+        taskList.id = 'task-list';
+        taskDiv.appendChild(taskList);
+
         const taskSample = document.createElement('li');
         taskSample.id = 'task-sample';
         taskSample.textContent = 'Sample Task';
-        taskTitle.appendChild(taskSample);
+        taskList.appendChild(taskSample);
 
         const newTask = document.createElement('button');
         newTask.id = 'new-task';
@@ -58,13 +66,13 @@ const loadDOM = () => {
 
     const initiatePage = (() => {
         loadHeader();
-        loadNav();
-        loadList();
+        loadProjects();
+        loadTasks();
     })();
 };
 
 const appendProject = (project) => {
-    const projectTitle = document.querySelector('#project-title');
+    const projectTitle = document.querySelector('#project-list');
     
     const projectSample = document.createElement('li');
     projectSample.textContent = project;
@@ -72,7 +80,7 @@ const appendProject = (project) => {
 };
 
 const appendTask = (task) => {
-    const taskTitle = document.querySelector('#task-title');
+    const taskTitle = document.querySelector('#task-list');
     
     const taskSample = document.createElement('li');
     taskSample.textContent = task;
