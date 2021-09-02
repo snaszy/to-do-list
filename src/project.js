@@ -23,9 +23,16 @@ const clearProjectList = (parent) => {
     }
 }
 
+const getProjectTitle = () => {
+    const projectTitle = document.querySelector('.current-project');
+
+    return projectTitle.textContent;
+}
+
 export { 
     createProject,
     addProjectArray,
     updateProjectList,
-    clearProjectList
+    clearProjectList,
+    getProjectTitle
 };

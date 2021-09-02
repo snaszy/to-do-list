@@ -30,6 +30,7 @@ const loadDOM = () => {
         
         const projectSample = document.createElement('li');
         projectSample.id = 'project-sample';
+        projectSample.className = 'current-project';
         projectSample.textContent = 'Sample Project';
         projectList.appendChild(projectSample);
 
@@ -87,8 +88,14 @@ const appendTask = (task) => {
     taskTitle.appendChild(taskSample);
 };
 
+const findProject = () => {
+    const projectListTitles = document.querySelector('#project-list');
+    return projectListTitles.firstChild.textContent;
+}
+
 export { 
     loadDOM,
     appendProject,
     appendTask,
+    findProject,
  }
