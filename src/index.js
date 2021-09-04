@@ -35,7 +35,7 @@ newTaskButton.addEventListener('click', () => {
 const submitProject = (project) => {
     const newProject = createProject(project);
     const projectList = document.querySelector('#project-list');
-    addProjectArray(allProjects[0].allTasks, newProject);
+    addProjectArray(allProjects, newProject);
     clearProjectList(projectList);
     updateProjectList(allProjects);
     console.log(allProjects);
@@ -44,7 +44,7 @@ const submitProject = (project) => {
 const submitTask = (name, details, date, priority) => {
     const newTask = createTask(name, details, date, priority);
     const taskList = document.querySelector('#task-list');
-    const currentProjectTitle = getProjectTitle();
+    //const currentProjectTitle = getProjectTitle();
     addTaskArray(allProjects[0].allTasks, newTask);
     clearTaskList(taskList)
     updateTaskList(allProjects[0].allTasks);
