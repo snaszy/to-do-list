@@ -34,5 +34,5 @@ export {
     addProjectArray,
     updateProjectList,
     clearProjectList,
-    getProjectTitle
+    getProjectTitle,
 };

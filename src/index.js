@@ -1,6 +1,6 @@
 import { loadDOM, findProject } from './DOM.js';
 import { openForm } from './forms.js';
-import { clearProjectList, createProject, updateProjectList, addProjectArray } from './project.js';
+import { clearProjectList, createProject, updateProjectList, addProjectArray, getProjectTitle } from './project.js';
 import { clearTaskList, createTask, updateTaskList, addTaskArray } from './task.js';
 import './style.css';
 
@@ -44,9 +44,10 @@ const submitProject = (project) => {
 const submitTask = (name, details, date, priority) => {
     const newTask = createTask(name, details, date, priority);
     const taskList = document.querySelector('#task-list');
-    addTaskArray(allProjects, newTask);
+    const currentProjectTitle = getProjectTitle();
+    addTaskArray(allProjects[0].allTasks, newTask);
     clearTaskList(taskList)
-    updateTaskList(allProjects);
+    updateTaskList(allProjects[0].allTasks);
     console.log(allProjects);
 }
 
