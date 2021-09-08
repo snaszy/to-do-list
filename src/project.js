@@ -11,9 +11,14 @@ const addProjectArray = (array, project) => {
     array.push(project);
 };
 
-const updateProjectList = (array) => {
+const updateProjectList = (array, currentProject) => {
     for (let i = 0; i < array.length; i++) {
-        appendProject(array[i].project);
+        if (currentProject === array[i].project) {
+            appendProject(array[i].project, 'current-project')
+
+        } else {
+            appendProject(array[i].project, '');
+        }
     }
 }
 
@@ -23,16 +28,16 @@ const clearProjectList = (parent) => {
     }
 }
 
-const getProjectTitle = () => {
-    const projectTitle = document.querySelector('.current-project');
-
-    return projectTitle.textContent;
+const setCurrentProject = (project) => {
+    project.target.classList('current-project');
 }
+
+
 
 export { 
     createProject,
     addProjectArray,
     updateProjectList,
     clearProjectList,
-    getProjectTitle,
+    setCurrentProject,
 };

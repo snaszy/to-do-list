@@ -1,4 +1,6 @@
 import Logo from './images/logo.png';
+import { clearProjectList, openProject, setCurrentProject, updateProjectList } from './project';
+import { clearTaskList, updateTaskList } from './task';
 
 const loadDOM = () => {
     const mainHeader = document.getElementById('content');
@@ -72,12 +74,17 @@ const loadDOM = () => {
     })();
 };
 
-const appendProject = (project) => {
-    const projectTitle = document.querySelector('#project-list');
+const appendProject = (project, current) => {
+    const projectList = document.querySelector('#project-list');
     
-    const projectSample = document.createElement('li');
-    projectSample.textContent = project;
-    projectTitle.appendChild(projectSample);
+    const projectTitle = document.createElement('li');
+    projectTitle.textContent = project;
+    projectTitle.classList = current;
+    projectList.appendChild(projectTitle);
+
+    projectTitle.addEventListener('click', (e) => {
+        e.target.classList('current-project');
+    })
 };
 
 const appendTask = (task) => {
@@ -88,14 +95,10 @@ const appendTask = (task) => {
     taskTitle.appendChild(taskSample);
 };
 
-const findProject = () => {
-    const projectListTitles = document.querySelector('#project-list');
-    return projectListTitles.firstChild.textContent;
-}
+
 
 export { 
     loadDOM,
     appendProject,
     appendTask,
-    findProject,
  }

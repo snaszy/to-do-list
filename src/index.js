@@ -1,6 +1,6 @@
 import { loadDOM, findProject } from './DOM.js';
 import { openForm } from './forms.js';
-import { clearProjectList, createProject, updateProjectList, addProjectArray, getProjectTitle } from './project.js';
+import { clearProjectList, createProject, updateProjectList, addProjectArray, getProjectTitle, openProject } from './project.js';
 import { clearTaskList, createTask, updateTaskList, addTaskArray } from './task.js';
 import './style.css';
 
@@ -8,6 +8,7 @@ loadDOM()
 
 const newProjectButton = document.querySelector('#new-project');
 const newTaskButton = document.querySelector('#new-task');
+const projectSelected = document.querySelectorAll('div#project-list > li');
 const newForm = openForm();
 
 let allProjects = [
@@ -19,9 +20,9 @@ let allProjects = [
                                 details: 'second Task',
                                 priority: 'now'
                                 }
-                            ]
-                        }
-                    ];
+                            ],
+                    }
+                  ];
 // console.log(allProjects[0].project)
 
 newProjectButton.addEventListener('click', () => {
@@ -35,10 +36,10 @@ newTaskButton.addEventListener('click', () => {
 const submitProject = (project) => {
     const newProject = createProject(project);
     const projectList = document.querySelector('#project-list');
+    let currentProjectTitle = document.querySelector('.current-project').textContent;
     addProjectArray(allProjects, newProject);
     clearProjectList(projectList);
-    updateProjectList(allProjects);
-    console.log(allProjects);
+    updateProjectList(allProjects, currentProjectTitle);
 }
 
 const submitTask = (name, details, date, priority) => {
@@ -48,7 +49,6 @@ const submitTask = (name, details, date, priority) => {
     addTaskArray(allProjects[0].allTasks, newTask);
     clearTaskList(taskList)
     updateTaskList(allProjects[0].allTasks);
-    console.log(allProjects);
 }
 
 function saveStorage () { 
