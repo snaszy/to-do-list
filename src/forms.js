@@ -1,7 +1,4 @@
-import { createTask } from './task.js';
-import { addTask } from './task.js';
 import { submitProject } from './index.js';
-import { addProject } from './project.js';
 import { submitTask } from './index.js';
 
 const openForm = () => {

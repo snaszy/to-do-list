@@ -1,8 +1,11 @@
 import Logo from './images/logo.png';
-import { clearProjectList, openProject, setCurrentProject, updateProjectList } from './project';
-import { clearTaskList, updateTaskList } from './task';
+import { indexOfProject, updateProjectList  } from './project';
+import { openForm } from './forms';
 
-const loadDOM = () => {
+const newForm = openForm();
+
+const loadDOM = (projects, tasks) => {
+
     const mainHeader = document.getElementById('content');
 
     const loadHeader = () => {
@@ -16,7 +19,8 @@ const loadDOM = () => {
         headerDiv.appendChild(headerLogo);
     };
 
-    const loadProjects = () => {
+    const loadProjects = (projects) => {
+
         const projectDiv = document.createElement('div');
         projectDiv.id = 'nav-div';
         mainHeader.appendChild(projectDiv)
@@ -26,23 +30,39 @@ const loadDOM = () => {
         projectTitle.textContent = 'Projects';
         projectDiv.appendChild(projectTitle);
         
-        const projectList = document.createElement('div');
-        projectList.id = 'project-list';
-        projectDiv.appendChild(projectList);
-        
-        const projectSample = document.createElement('li');
-        projectSample.id = 'project-sample';
-        projectSample.className = 'current-project';
-        projectSample.textContent = 'Sample Project';
-        projectList.appendChild(projectSample);
+        const projectListDiv = document.createElement('div');
+        projectListDiv.id = 'project-list';
+        projectDiv.appendChild(projectListDiv);
+
+        for (let i = 0; i < projects.length; i++) {
+            const projectList = document.createElement('li');
+            projectList.textContent = projects[i].project;
+            projectList.addEventListener('click', (e) => {
+                const currentProject = projects[i].project;
+                clearList();
+                loadDOM(projects, currentProject);
+            })
+            projectListDiv.appendChild(projectList);            
+        }    
+
+        projectTitle.addEventListener('click', (e) => {
+            const currentProject = projects.project;
+            clearList();
+            loadDOM(projects, currentProject);
+            console.log(projects);
+            console.log(currentProject);
+        })
 
         const newProject = document.createElement('button');
         newProject.id = 'new-project';
         newProject.textContent = 'New Project';
+        newProject.addEventListener('click', () => {
+            newForm.projectForm();
+        });
         projectDiv.appendChild(newProject);
     };
 
-    const loadTasks = () => {
+    const loadTasks = (tasks) => {
         const taskDiv = document.createElement('div');
         taskDiv.id = 'list-div';
         mainHeader.appendChild(taskDiv)
@@ -52,14 +72,18 @@ const loadDOM = () => {
         taskTitle.textContent = 'Tasks';
         taskDiv.appendChild(taskTitle);
         
-        const taskList = document.createElement('div');
-        taskList.id = 'task-list';
-        taskDiv.appendChild(taskList);
+        const taskListDiv = document.createElement('div');
+        taskListDiv.id = 'task-list';
+        taskDiv.appendChild(taskListDiv);
 
         const taskSample = document.createElement('li');
         taskSample.id = 'task-sample';
         taskSample.textContent = 'Sample Task';
-        taskList.appendChild(taskSample);
+        taskListDiv.appendChild(taskSample);
+    
+        const taskList = document.createElement('li');
+        taskList.textContent = tasks;
+        taskListDiv.appendChild(taskList);
 
         const newTask = document.createElement('button');
         newTask.id = 'new-task';
@@ -69,25 +93,13 @@ const loadDOM = () => {
 
     const initiatePage = (() => {
         loadHeader();
-        loadProjects();
-        loadTasks();
+        loadProjects(projects);
+        loadTasks(tasks);
     })();
 };
 
-const appendProject = (project, current) => {
-    const projectList = document.querySelector('#project-list');
-    
-    const projectTitle = document.createElement('li');
-    projectTitle.textContent = project;
-    projectTitle.classList = current;
-    projectList.appendChild(projectTitle);
 
-    projectTitle.addEventListener('click', (e) => {
-        e.target.classList('current-project');
-    })
-};
-
-const appendTask = (task) => {
+const appendTaskToDOM = (task) => {
     const taskTitle = document.querySelector('#task-list');
     
     const taskSample = document.createElement('li');
@@ -95,10 +107,15 @@ const appendTask = (task) => {
     taskTitle.appendChild(taskSample);
 };
 
-
+const clearList = () => {
+    const projectList = document.querySelector('#content');
+    while (projectList.firstChild) {
+        projectList.removeChild(projectList.firstChild);
+    }
+}
 
 export { 
     loadDOM,
-    appendProject,
-    appendTask,
+    appendTaskToDOM,
+    clearList,
  }

@@ -1,8 +1,9 @@
-import { appendProject } from './DOM.js';
+import { appendProjectToDOM } from './DOM.js';
 
-const createProject = (project) => {
+const createProject = (project, current) => {
     return {
         project,
+        current,
         allTasks: [],
     };
 };
@@ -13,31 +14,24 @@ const addProjectArray = (array, project) => {
 
 const updateProjectList = (array, currentProject) => {
     for (let i = 0; i < array.length; i++) {
-        if (currentProject === array[i].project) {
-            appendProject(array[i].project, 'current-project')
-
+        if (array[i].project === currentProject) {
+            array[i].current = true;
+            appendProjectToDOM(array[i].project);
         } else {
-            appendProject(array[i].project, '');
+            array[i].current = false;
+            appendProjectToDOM(array[i].project);
         }
     }
 }
 
-const clearProjectList = (parent) => {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
+//find the array of the current project
+const indexOfProject = (project) => {
+    allProjects.indexOf(project);
 }
-
-const setCurrentProject = (project) => {
-    project.target.classList('current-project');
-}
-
-
 
 export { 
     createProject,
     addProjectArray,
     updateProjectList,
-    clearProjectList,
-    setCurrentProject,
+    indexOfProject,
 };

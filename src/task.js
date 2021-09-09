@@ -1,4 +1,4 @@
-import { appendTask } from './DOM.js';
+import { appendTaskToDOM } from './DOM.js';
 
 const createTask = (name, details, date, priority) => {
     return {
@@ -17,23 +17,12 @@ const addTaskArray = (array, task) => {
 
 const updateTaskList = (array) => {
     for (let i=0; i < array.length; i++) {
-        appendTask(array[i].name); 
-        }
-}
-
-const clearTaskList = (parent) => {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
+        appendTaskToDOM(array[i].name); 
     }
-}
-
-const addProjecToArray = () => {
-
 }
 
 export { 
     createTask,
     addTaskArray, 
     updateTaskList,
-    clearTaskList,
 };
