@@ -1,6 +1,6 @@
 import Logo from './images/logo.png';
-import { indexOfProject, updateProjectList  } from './project';
 import { openForm } from './forms';
+import { currentProject } from '.';
 
 const newForm = openForm();
 
@@ -37,21 +37,23 @@ const loadDOM = (projects, tasks) => {
         for (let i = 0; i < projects.length; i++) {
             const projectList = document.createElement('li');
             projectList.textContent = projects[i].project;
+            if (projects[i].current) {
+                projectList.className = 'current-project';
+            }
+            else {
+                projectList.className = '';
+            }
             projectList.addEventListener('click', (e) => {
-                const currentProject = projects[i].project;
+                for (let i = 0; i < projects.length; i++) {
+                    projects[i].current = false;
+                }
+                projects[i].current = true;
                 clearList();
-                loadDOM(projects, currentProject);
+                loadDOM(projects, projects[i].allTasks);
+                console.log('clicked');
             })
             projectListDiv.appendChild(projectList);            
         }    
-
-        projectTitle.addEventListener('click', (e) => {
-            const currentProject = projects.project;
-            clearList();
-            loadDOM(projects, currentProject);
-            console.log(projects);
-            console.log(currentProject);
-        })
 
         const newProject = document.createElement('button');
         newProject.id = 'new-project';
@@ -62,49 +64,44 @@ const loadDOM = (projects, tasks) => {
         projectDiv.appendChild(newProject);
     };
 
-    const loadTasks = (tasks) => {
+    const loadTasks = (projects, tasks) => {
         const taskDiv = document.createElement('div');
         taskDiv.id = 'list-div';
         mainHeader.appendChild(taskDiv)
 
         const taskTitle = document.createElement('h1');
         taskTitle.id = 'task-title';
-        taskTitle.textContent = 'Tasks';
+        taskTitle.textContent = currentProject();
         taskDiv.appendChild(taskTitle);
         
         const taskListDiv = document.createElement('div');
         taskListDiv.id = 'task-list';
         taskDiv.appendChild(taskListDiv);
 
-        const taskSample = document.createElement('li');
-        taskSample.id = 'task-sample';
-        taskSample.textContent = 'Sample Task';
-        taskListDiv.appendChild(taskSample);
-    
-        const taskList = document.createElement('li');
-        taskList.textContent = tasks;
-        taskListDiv.appendChild(taskList);
+        for (let i = 0; i < tasks.length; i++) {
+            const taskList = document.createElement('li');
+            taskList.textContent = tasks[i].name;
+            taskList.addEventListener('click', (e) => {
+                newForm.taskForm();
+                console.log('clicked');
+            })
+            taskListDiv.appendChild(taskList);   
+        }    
 
         const newTask = document.createElement('button');
         newTask.id = 'new-task';
         newTask.textContent = 'New Task';
+        newTask.addEventListener('click', () => {
+            newForm.taskForm();
+        });
         taskDiv.appendChild(newTask);
     };
 
     const initiatePage = (() => {
         loadHeader();
         loadProjects(projects);
-        loadTasks(tasks);
+        loadTasks(projects, tasks);
     })();
-};
-
-
-const appendTaskToDOM = (task) => {
-    const taskTitle = document.querySelector('#task-list');
-    
-    const taskSample = document.createElement('li');
-    taskSample.textContent = task;
-    taskTitle.appendChild(taskSample);
 };
 
 const clearList = () => {
@@ -116,6 +113,5 @@ const clearList = () => {
 
 export { 
     loadDOM,
-    appendTaskToDOM,
     clearList,
  }

@@ -6,7 +6,7 @@ const openForm = () => {
 
     const projectForm = () => {
         const blackBackground = document.createElement('div');
-        blackBackground.id = 'background';
+        blackBackground.className = 'background';
         mainHeader.appendChild(blackBackground);
         
         const projectDiv = document.createElement('div');
@@ -41,13 +41,13 @@ const openForm = () => {
     
         closeProjectButton.querySelector('#close-project-button');
         closeProjectButton.addEventListener('click', () => {
-            blackBackground.classList.toggle('no-background');
+            blackBackground.id = 'no-background';
         });
 
         submitProjectButton.querySelector('#project-submit');
         submitProjectButton.addEventListener('click', () => {
             submitProject(projectNameInput.value);
-            blackBackground.classList.toggle('no-background');
+            blackBackground.id = 'no-background';
         });
 
         const resetInput = () => {
@@ -57,8 +57,7 @@ const openForm = () => {
 
     const taskForm = () => {
         const blackBackground = document.createElement('div');
-        blackBackground.id = 'background';
-        blackBackground.classList.add('black-background');
+        blackBackground.className = 'background';
         mainHeader.appendChild(blackBackground);
         
         const taskDiv = document.createElement('div');
@@ -132,13 +131,13 @@ const openForm = () => {
 
         closeTaskButton.querySelector('#close-button');
         closeTaskButton.addEventListener('click', () => {
-            blackBackground.classList.toggle('no-background');
+            blackBackground.id = 'no-background';
         });
 
         submitTaskButton.querySelector('#task-submit');
         submitTaskButton.addEventListener('click', () => {
             submitTask(taskNameInput.value, taskDetailsInput.value, taskDateDueInput.value, taskPriorityInput.value);
-            blackBackground.classList.toggle('no-background');
+            blackBackground.id = 'no-background';
         });
     };
 

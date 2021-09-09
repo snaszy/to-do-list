@@ -4,16 +4,16 @@
     display: flex;
     flex-flow: row wrap;
 }
-.black-background {
+.background {
     display: block;
     position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
     background-color: rgba(0,0,0,.2);
 }
-.no-background {
+#no-background {
     display: none;
 }
 #task-div, #project-div {
@@ -42,6 +42,12 @@
     height: 95vh;
     background-color:lightgray;
 }
+.current-project {
+    font-weight:bold;
+}
+li:hover {
+    background-color: red;
+}
 #list-div {
     flex: 2 0px;
     height: 95vh;
@@ -52,6 +58,7 @@
     justify-content: space-evenly;
 }
 button {
+    margin: 15px 0px;
     border-radius: 5px;
     border-style: none;
     color: white;
