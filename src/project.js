@@ -1,5 +1,3 @@
-import { appendProjectToDOM } from './DOM.js';
-
 const createProject = (project, current) => {
     return {
         project,
@@ -24,14 +22,8 @@ const updateProjectList = (array, currentProject) => {
     }
 }
 
-//find the array of the current project
-const indexOfProject = (project) => {
-    allProjects.indexOf(project);
-}
-
 export { 
     createProject,
     addProjectArray,
     updateProjectList,
-    indexOfProject,
 };

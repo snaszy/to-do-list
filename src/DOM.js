@@ -1,10 +1,12 @@
 import Logo from './images/logo.png';
-import { openForm } from './forms';
+import { openForm, getFormInformation } from './forms';
 import { currentProject } from '.';
 
 const newForm = openForm();
 
 const loadDOM = (projects, tasks) => {
+
+    clearDOM();
 
     const mainHeader = document.getElementById('content');
 
@@ -48,7 +50,6 @@ const loadDOM = (projects, tasks) => {
                     projects[i].current = false;
                 }
                 projects[i].current = true;
-                clearList();
                 loadDOM(projects, projects[i].allTasks);
                 console.log('clicked');
             })
@@ -80,12 +81,25 @@ const loadDOM = (projects, tasks) => {
 
         for (let i = 0; i < tasks.length; i++) {
             const taskList = document.createElement('li');
+            taskList.className = 'name';
             taskList.textContent = tasks[i].name;
+            taskList.id = tasks[i].id;
             taskList.addEventListener('click', (e) => {
-                newForm.taskForm();
-                console.log('clicked');
+                newForm.editForm(tasks[i]);
+                getFormInformation(tasks[i]);
+                //getting information from the tasks and pushing to form
             })
-            taskListDiv.appendChild(taskList);   
+            taskListDiv.appendChild(taskList);
+            
+            const taskDate = document.createElement('p');
+            taskDate.className = 'date';
+            taskDate.textContent = tasks[i].date;
+            taskListDiv.appendChild(taskDate);
+
+            const taskDetails = document.createElement('ul');
+            taskDetails.className = 'details';
+            taskDetails.textContent = tasks[i].details;
+            taskListDiv.appendChild(taskDetails);
         }    
 
         const newTask = document.createElement('button');
@@ -104,7 +118,7 @@ const loadDOM = (projects, tasks) => {
     })();
 };
 
-const clearList = () => {
+const clearDOM = () => {
     const projectList = document.querySelector('#content');
     while (projectList.firstChild) {
         projectList.removeChild(projectList.firstChild);
@@ -113,5 +127,5 @@ const clearList = () => {
 
 export { 
     loadDOM,
-    clearList,
+    clearDOM,
  }

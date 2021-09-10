@@ -45,12 +45,21 @@
 .current-project {
     font-weight:bold;
 }
-li:hover {
-    background-color: red;
-}
 #list-div {
     flex: 2 0px;
     height: 95vh;
+}
+#task-list {
+    display: flex;
+    flex-flow: row wrap;
+}
+.name {
+    flex: 1 0px;
+}
+.date {
+    flex: 1 0px;
+    text-align: end;
+    margin: 0px;
 }
 #button-container {
     padding: 10px;
@@ -59,7 +68,7 @@ li:hover {
 }
 button {
     margin: 15px 0px;
-    border-radius: 5px;
+    border-radius: 3px;
     border-style: none;
     color: white;
     background: gray;
@@ -69,7 +78,14 @@ button:hover {
 }
 li {
     color: black;
-    font-size: .7em;
+    font-size: .9em;
+}
+li:hover {
+    background-color: red;
+}
+ul {
+    margin: 0px;
+    font-size: .8em;
 }
 label {
     margin:10px;

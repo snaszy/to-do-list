@@ -1,5 +1,3 @@
-import { appendTaskToDOM } from './DOM.js';
-
 const createTask = (name, details, date, priority) => {
     return {
         name,
@@ -15,14 +13,18 @@ const addTaskArray = (array, task) => {
     array.push(task);
 };
 
-const updateTaskList = (array) => {
-    for (let i=0; i < array.length; i++) {
-        appendTaskToDOM(array[i].name); 
+const updateTaskArray = (array, tasks) => {
+    for (let i = 0; i < array.length; i++) {
+        console.log(array[i]);
     }
+}
+
+const removeTaskArray= (array, tasks) => {
+    array.splice(array.indexOf(tasks),1);
 }
 
 export { 
     createTask,
-    addTaskArray, 
-    updateTaskList,
+    addTaskArray,
+    updateTaskArray,
 };

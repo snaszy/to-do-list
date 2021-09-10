@@ -1,5 +1,4 @@
-import { loadDOM, clearList } from './DOM.js';
-import { openForm } from './forms.js';
+import { loadDOM } from './DOM.js';
 import { createProject, addProjectArray } from './project.js';
 import { createTask, addTaskArray } from './task.js';
 import './style.css';
@@ -10,9 +9,12 @@ let allProjects = [
     current: true,
     allTasks: [
                 {
-                name: 'FirstTask',
-                details: 'second Task',
-                priority: 'now'
+                name: 'First Task',
+                details: 'description of what needs to happen',
+                date: '11/12/23',
+                priority: 'now',
+                checked: true,
+                id: 1223455,
                 }
             ],
     }
@@ -34,8 +36,7 @@ const currentProject = () => {
     }
 };
 
-loadDOM(allProjects, allProjects[0].allTasks);
-//console.log(allProjects[0].allTasks);
+loadDOM(allProjects, currentTasks());
 
 const submitProject = (project) => {
     for (let i = 0; i < allProjects.length; i++) {
@@ -43,28 +44,37 @@ const submitProject = (project) => {
     }
     const newProject = createProject(project, true);
     addProjectArray(allProjects, newProject);
-    clearList();
     loadDOM(allProjects, currentTasks());
-}
+};
 
 const submitTask = (name, details, date, priority) => {
     const newTask = createTask(name, details, date, priority);
     addTaskArray(currentTasks(), newTask);
-    clearList();
     loadDOM(allProjects, currentTasks());
-}
+};
 
-function saveStorage () { 
-    localStorage.setItem('MyList', JSON.stringify(allProjects));
-}
+const updateDOM = () => {
+    loadDOM(allProjects, currentTasks());
+};
 
-function getStorage (){
-    return JSON.parse(localStorage.getItem('MyList'));
-}
+/* const updateSave = (() => {
+    if (localSave.MyList) {
+        allProjects = getSave();
+    }
+})(); */
+
+const save = () => { 
+    localSave.setItem('MyList', JSON.stringify(allProjects));
+};
+
+const getSave = () => {
+    return JSON.parse(localSave.getItem('MyList'));
+};
 
 export { 
     submitProject,
     submitTask,
+    updateDOM,
     currentTasks,
     currentProject,
 };
