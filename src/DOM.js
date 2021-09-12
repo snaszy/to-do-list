@@ -80,6 +80,10 @@ const loadDOM = (projects, tasks) => {
         taskDiv.appendChild(taskListDiv);
 
         for (let i = 0; i < tasks.length; i++) {
+            const taskElementDiv = document.createElement('div');
+            taskElementDiv.className = 'task';
+            taskListDiv.appendChild(taskElementDiv);
+
             const taskList = document.createElement('li');
             taskList.className = 'name';
             taskList.textContent = tasks[i].name;
@@ -89,17 +93,26 @@ const loadDOM = (projects, tasks) => {
                 getFormInformation(tasks[i]);
                 //getting information from the tasks and pushing to form
             })
-            taskListDiv.appendChild(taskList);
+            taskElementDiv.appendChild(taskList);
             
             const taskDate = document.createElement('p');
             taskDate.className = 'date';
             taskDate.textContent = tasks[i].date;
-            taskListDiv.appendChild(taskDate);
+            taskElementDiv.appendChild(taskDate);
+
+            const taskRemove = document.createElement('button');
+            taskRemove.className = 'remove';
+            taskRemove.textContent = 'x';
+            taskRemove.addEventListener('click', () => {
+                tasks.splice(tasks[i], 1);
+                loadDOM(projects, tasks)
+            });
+            taskElementDiv.appendChild(taskRemove);
 
             const taskDetails = document.createElement('ul');
             taskDetails.className = 'details';
             taskDetails.textContent = tasks[i].details;
-            taskListDiv.appendChild(taskDetails);
+            taskElementDiv.appendChild(taskDetails);
         }    
 
         const newTask = document.createElement('button');

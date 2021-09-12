@@ -49,17 +49,26 @@
     flex: 2 0px;
     height: 95vh;
 }
-#task-list {
-    display: flex;
-    flex-flow: row wrap;
+.task {
+    display: grid;
+    grid: auto-flow row auto / repeat(3, 1fr);
 }
 .name {
-    flex: 1 0px;
+    grid-area: 1 / 1 / 2 / 2;
 }
 .date {
-    flex: 1 0px;
-    text-align: end;
+    grid-area: 1 / 2 / 2 / 3;
+    text-align: center;
     margin: 0px;
+}
+.remove {
+    grid-area: 1 / 3 / 2 / 4;
+    justify-self: center;
+    margin: 0px;
+    border-radius: 50%;
+}
+.details {
+    grid-area: 2 / 1 / 3 / 4;
 }
 #button-container {
     padding: 10px;
