@@ -35,25 +35,7 @@ const loadDOM = (projects, tasks) => {
         projectListDiv.id = 'project-list';
         projectDiv.appendChild(projectListDiv);
 
-        for (let i = 0; i < projects.length; i++) {
-            const projectList = document.createElement('li');
-            projectList.textContent = projects[i].project;
-            if (projects[i].current) {
-                projectList.className = 'current-project';
-            }
-            else {
-                projectList.className = '';
-            }
-            projectList.addEventListener('click', (e) => {
-                for (let i = 0; i < projects.length; i++) {
-                    projects[i].current = false;
-                }
-                projects[i].current = true;
-                loadDOM(projects, projects[i].allTasks);
-                console.log('clicked');
-            })
-            projectListDiv.appendChild(projectList);            
-        }    
+        insertProjects(projects);
 
         const newProject = document.createElement('button');
         newProject.id = 'new-project';
@@ -78,41 +60,7 @@ const loadDOM = (projects, tasks) => {
         taskListDiv.id = 'task-list';
         taskDiv.appendChild(taskListDiv);
 
-        for (let i = 0; i < tasks.length; i++) {
-            const taskElementDiv = document.createElement('div');
-            taskElementDiv.className = 'task';
-            taskListDiv.appendChild(taskElementDiv);
-
-            const taskList = document.createElement('li');
-            taskList.className = 'name';
-            taskList.textContent = tasks[i].name;
-            taskList.id = tasks[i].id;
-            taskList.addEventListener('click', (e) => {
-                newForm.editForm(tasks[i]);
-                getFormInformation(tasks[i]);
-                //getting information from the tasks and pushing to form
-            })
-            taskElementDiv.appendChild(taskList);
-            
-            const taskDate = document.createElement('p');
-            taskDate.className = 'date';
-            taskDate.textContent = tasks[i].date;
-            taskElementDiv.appendChild(taskDate);
-
-            const taskRemove = document.createElement('button');
-            taskRemove.className = 'remove';
-            taskRemove.textContent = 'x';
-            taskRemove.addEventListener('click', () => {
-                tasks.splice(tasks[i], 1);
-                loadDOM(projects, tasks)
-            });
-            taskElementDiv.appendChild(taskRemove);
-
-            const taskDetails = document.createElement('ul');
-            taskDetails.className = 'details';
-            taskDetails.textContent = tasks[i].details;
-            taskElementDiv.appendChild(taskDetails);
-        }    
+        insertTasks(projects, tasks)
 
         const newTask = document.createElement('button');
         newTask.id = 'new-task';
@@ -129,6 +77,96 @@ const loadDOM = (projects, tasks) => {
         loadTasks(projects, tasks);
     })();
 };
+
+const insertProjects = (projects) => {
+    const projectListDiv = document.querySelector('#project-list');
+
+    for (let i = 0; i < projects.length; i++) {
+        const projectList = document.createElement('li');
+        projectList.textContent = projects[i].project;
+        if (projects[i].current) {
+            projectList.className = 'current-project';
+        }
+        else {
+            projectList.className = '';
+        }
+        projectList.addEventListener('click', () => {
+            for (let i = 0; i < projects.length; i++) {
+                projects[i].current = false;
+            }
+            projects[i].current = true;
+            loadDOM(projects, projects[i].allTasks);
+            console.log('clicked');
+        })
+        projectListDiv.appendChild(projectList);            
+    } 
+}
+
+const insertTasks = (projects, tasks) => {
+    const taskListDiv = document.querySelector('#task-list');
+
+    for (let i = 0; i < tasks.length; i++) {
+        const taskElementDiv = document.createElement('div');
+        taskElementDiv.className = 'task';
+        taskListDiv.appendChild(taskElementDiv);
+
+        const taskCompleted = document.createElement('button');
+        taskCompleted.className = 'completed';
+        if (tasks[i].checked) {
+            taskCompleted.textContent = '-';
+        } else {
+            taskCompleted.textContent = 'o';
+        }
+        if (tasks[i].priority === 'Low') {
+            taskCompleted.id = 'green';
+        } else if (tasks[i].priority === 'Medium') {
+            taskCompleted.id = 'blue';
+        } else if (tasks[i].priority === 'High') {
+            taskCompleted.id = 'red';
+        }else {
+            taskCompleted.id = 'none';
+        }
+        taskCompleted.addEventListener('click', () => {
+            if (tasks[i].checked) {
+                tasks[i].checked = false;
+            } else {
+                tasks[i].checked = true;
+            }
+            loadDOM(projects, tasks);
+        });
+        taskElementDiv.appendChild(taskCompleted);
+
+        const taskList = document.createElement('p');
+        taskList.className = 'name';
+        taskList.textContent = tasks[i].name;
+        taskList.id = tasks[i].id;
+        taskList.addEventListener('click', (e) => {
+            newForm.editForm(tasks[i]);
+            getFormInformation(tasks[i]);
+            //getting information from the tasks and pushing to form
+        })
+        taskElementDiv.appendChild(taskList);
+        
+        const taskDate = document.createElement('p');
+        taskDate.className = 'date';
+        taskDate.textContent = tasks[i].date;
+        taskElementDiv.appendChild(taskDate);
+
+        const taskRemove = document.createElement('button');
+        taskRemove.className = 'remove';
+        taskRemove.textContent = 'x';
+        taskRemove.addEventListener('click', () => {
+            tasks.splice(tasks[i], 1);
+            loadDOM(projects, tasks)
+        });
+        taskElementDiv.appendChild(taskRemove);
+
+        const taskDetails = document.createElement('p');
+        taskDetails.className = 'details';
+        taskDetails.textContent = tasks[i].details;
+        taskElementDiv.appendChild(taskDetails);
+    }    
+}
 
 const clearDOM = () => {
     const projectList = document.querySelector('#content');

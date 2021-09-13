@@ -12,8 +12,8 @@ let allProjects = [
                 name: 'First Task',
                 details: 'description of what needs to happen',
                 date: '11/12/23',
-                priority: 'now',
-                checked: true,
+                priority: 'High',
+                checked: false,
                 id: 1223455,
                 }
             ],

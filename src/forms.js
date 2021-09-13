@@ -111,10 +111,24 @@ const openForm = () => {
         taskPriorityLabel.textContent = 'Priority ';
         taskFormWindow.appendChild(taskPriorityLabel);
 
-        const taskPriorityInput = document.createElement('input');
+        const taskPriorityInput = document.createElement('select');
         taskPriorityInput.id = 'task-priority-input';
-        taskPriorityInput.setAttribute('placeholder','Priority');
         taskPriorityLabel.appendChild(taskPriorityInput);
+
+        const taskPriorityHigh = document.createElement('option');
+        taskPriorityHigh.value = 'High';
+        taskPriorityHigh.textContent = 'High';
+        taskPriorityInput.appendChild(taskPriorityHigh);
+
+        const taskPriorityMedium = document.createElement('option');
+        taskPriorityMedium.value = 'Medium';
+        taskPriorityMedium.textContent = 'Medium';
+        taskPriorityInput.appendChild(taskPriorityMedium);
+
+        const taskPriorityLow = document.createElement('option');
+        taskPriorityLow.value = 'Low';
+        taskPriorityLow.textContent = 'Low';
+        taskPriorityInput.appendChild(taskPriorityLow);
 
         const buttonDiv = document.createElement('div');
         buttonDiv.id = 'button-container';
@@ -140,12 +154,12 @@ const openForm = () => {
 
         submitTaskButton.querySelector('#task-submit');
         submitTaskButton.addEventListener('click', () => {
-            if (taskNameInput.value !== '') {
+            if (taskNameInput.value !== '' && taskDateDueInput.value !== '') {
                 submitTask(
                     taskNameInput.value, 
                     taskDetailsInput.value, 
                     taskDateDueInput.value, 
-                    taskPriorityInput.value
+                    taskPriorityInput.value,
                 );
             } else {
                 alert('Please Enter a Name');
@@ -208,10 +222,24 @@ const openForm = () => {
         taskPriorityLabel.textContent = 'Priority ';
         taskFormWindow.appendChild(taskPriorityLabel);
 
-        const taskPriorityInput = document.createElement('input');
+        const taskPriorityInput = document.createElement('select');
         taskPriorityInput.id = 'task-priority-input';
-        taskPriorityInput.setAttribute('placeholder','Priority');
         taskPriorityLabel.appendChild(taskPriorityInput);
+
+        const taskPriorityHigh = document.createElement('option');
+        taskPriorityHigh.value = 'High';
+        taskPriorityHigh.textContent = 'High';
+        taskPriorityInput.appendChild(taskPriorityHigh);
+
+        const taskPriorityMedium = document.createElement('option');
+        taskPriorityMedium.value = 'Medium';
+        taskPriorityMedium.textContent = 'Medium';
+        taskPriorityInput.appendChild(taskPriorityMedium);
+
+        const taskPriorityLow = document.createElement('option');
+        taskPriorityLow.value = 'Low';
+        taskPriorityLow.textContent = 'Low';
+        taskPriorityInput.appendChild(taskPriorityLow);
 
         const buttonDiv = document.createElement('div');
         buttonDiv.id = 'button-container';
@@ -262,6 +290,7 @@ const getFormInformation = (tasks) => {
     details.value = tasks.details;
     date.value = tasks.date;
     priority.value = tasks.priority;
+    
 }
 
 export { 

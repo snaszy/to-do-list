@@ -13,18 +13,11 @@ const addTaskArray = (array, task) => {
     array.push(task);
 };
 
-const updateTaskArray = (array, tasks) => {
-    for (let i = 0; i < array.length; i++) {
-        console.log(array[i]);
-    }
-}
-
-const removeTaskArray= (array, tasks) => {
-    array.splice(array.indexOf(tasks),1);
+const tasksChecked = (task) => {
+    
 }
 
 export { 
     createTask,
     addTaskArray,
-    updateTaskArray,
 };
