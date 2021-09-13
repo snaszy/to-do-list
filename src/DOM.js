@@ -5,7 +5,6 @@ import { currentProject } from '.';
 const newForm = openForm();
 
 const loadDOM = (projects, tasks) => {
-
     clearDOM();
 
     const mainHeader = document.getElementById('content');

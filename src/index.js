@@ -36,40 +36,46 @@ const currentProject = () => {
     }
 };
 
-loadDOM(allProjects, currentTasks());
-
 const submitProject = (project) => {
     for (let i = 0; i < allProjects.length; i++) {
         allProjects[i].current = false;
     }
     const newProject = createProject(project, true);
     addProjectArray(allProjects, newProject);
-    loadDOM(allProjects, currentTasks());
+    updateDOM();
 };
 
 const submitTask = (name, details, date, priority) => {
     const newTask = createTask(name, details, date, priority);
     addTaskArray(currentTasks(), newTask);
-    loadDOM(allProjects, currentTasks());
+    updateDOM();
 };
 
 const updateDOM = () => {
+    saveLocalStorage();
     loadDOM(allProjects, currentTasks());
 };
 
-/* const updateSave = (() => {
-    if (localSave.MyList) {
-        allProjects = getSave();
+const updateLocalStorage = () => {
+    if (localStorage.MyList) {
+        allProjects = getLocalStorage();
+        return allProjects;
     }
-})(); */
-
-const save = () => { 
-    localSave.setItem('MyList', JSON.stringify(allProjects));
 };
 
-const getSave = () => {
-    return JSON.parse(localSave.getItem('MyList'));
+const saveLocalStorage = () => { 
+    localStorage.setItem('MyList', JSON.stringify(allProjects));
 };
+
+const getLocalStorage = () => {
+    return JSON.parse(localStorage.getItem('MyList'));
+};
+
+const checkForStorage = (() => {
+    updateLocalStorage();
+    updateDOM();
+})();
+
 
 export { 
     submitProject,
