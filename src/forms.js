@@ -1,4 +1,3 @@
-import { dateTime} from 'date-fns'; 
 import { submitProject, submitTask, updateDOM } from './index.js';
 
 const openForm = () => {
@@ -27,17 +26,21 @@ const openForm = () => {
         projectNameInput.setAttribute('placeholder','Project Name');
         projectFormWindow.appendChild(projectNameInput);
 
+        const projectButtonDiv = document.createElement('div');
+        projectButtonDiv.id = 'button-container';
+        projectFormWindow.appendChild(projectButtonDiv);
+
         const submitProjectButton = document.createElement('button');
         submitProjectButton.id = 'project-submit';
         submitProjectButton.type = 'button';
         submitProjectButton.textContent = 'Submit';
-        projectFormWindow.appendChild(submitProjectButton);
+        projectButtonDiv.appendChild(submitProjectButton);
 
         const closeProjectButton = document.createElement('button');
         closeProjectButton.id = 'close-project-button';
         closeProjectButton.type= 'button';
         closeProjectButton.textContent = 'Close';
-        projectFormWindow.appendChild(closeProjectButton);
+        projectButtonDiv.appendChild(closeProjectButton);
     
         closeProjectButton.querySelector('#close-project-button');
         closeProjectButton.addEventListener('click', () => {

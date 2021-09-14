@@ -1,6 +1,6 @@
 import { loadDOM } from './DOM.js';
-import { createProject, addProjectArray } from './project.js';
-import { createTask, addTaskArray } from './task.js';
+import { createProject, addProjectArray, indexOfProject } from './project.js';
+import { createTask, addTaskArray, sortTaskArray } from './task.js';
 import './style.css';
 
 let allProjects = [
@@ -11,7 +11,7 @@ let allProjects = [
                 {
                 name: 'First Task',
                 details: 'description of what needs to happen',
-                date: '11/12/23',
+                date:  '11/12/23',
                 priority: 'High',
                 checked: false,
                 id: 1223455,
@@ -52,6 +52,7 @@ const submitTask = (name, details, date, priority) => {
 };
 
 const updateDOM = () => {
+    sortTaskArray(currentTasks());
     saveLocalStorage();
     loadDOM(allProjects, currentTasks());
 };
@@ -75,7 +76,6 @@ const checkForStorage = (() => {
     updateLocalStorage();
     updateDOM();
 })();
-
 
 export { 
     submitProject,

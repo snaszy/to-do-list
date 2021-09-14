@@ -1,6 +1,8 @@
 import Logo from './images/logo.png';
+import { format, locale } from 'date-fns';
 import { openForm, getFormInformation } from './forms';
 import { currentProject } from '.';
+import { updateDOM } from './index';
 
 const newForm = openForm();
 
@@ -82,23 +84,35 @@ const insertProjects = (projects) => {
     const projectListDiv = document.querySelector('#project-list');
 
     for (let i = 0; i < projects.length; i++) {
-        const projectList = document.createElement('li');
-        projectList.textContent = projects[i].project;
+        const projectDiv = document.createElement('div');
+        projectDiv.className = 'project';
+        projectListDiv.appendChild(projectDiv);
+
+        const projectName = document.createElement('p');
+        projectName.textContent = projects[i].project;
         if (projects[i].current) {
-            projectList.className = 'current-project';
+            projectName.className = 'current-project';
         }
         else {
-            projectList.className = '';
+            projectName.className = '';
         }
-        projectList.addEventListener('click', () => {
+        projectName.addEventListener('click', () => {
             for (let i = 0; i < projects.length; i++) {
                 projects[i].current = false;
             }
             projects[i].current = true;
             loadDOM(projects, projects[i].allTasks);
-            console.log('clicked');
         })
-        projectListDiv.appendChild(projectList);            
+        projectDiv.appendChild(projectName); 
+        
+        const projectRemove = document.createElement('button');
+        projectRemove.className = 'remove';
+        projectRemove.textContent = 'x';
+        projectRemove.addEventListener('click', () => {
+            projects.splice(projects[i], 1);
+            loadDOM(projects, tasks)
+        });
+        projectDiv.appendChild(projectRemove);
     } 
 }
 
@@ -108,6 +122,11 @@ const insertTasks = (projects, tasks) => {
     for (let i = 0; i < tasks.length; i++) {
         const taskElementDiv = document.createElement('div');
         taskElementDiv.className = 'task';
+        taskElementDiv.addEventListener('click', () => {
+            newForm.editForm(tasks[i]);
+            getFormInformation(tasks[i]);
+            //getting information from the tasks and pushing to form
+        })
         taskListDiv.appendChild(taskElementDiv);
 
         const taskCompleted = document.createElement('button');
@@ -140,16 +159,14 @@ const insertTasks = (projects, tasks) => {
         taskList.className = 'name';
         taskList.textContent = tasks[i].name;
         taskList.id = tasks[i].id;
-        taskList.addEventListener('click', (e) => {
-            newForm.editForm(tasks[i]);
-            getFormInformation(tasks[i]);
-            //getting information from the tasks and pushing to form
-        })
         taskElementDiv.appendChild(taskList);
         
         const taskDate = document.createElement('p');
         taskDate.className = 'date';
-        taskDate.textContent = tasks[i].date;
+        const date = new Date(tasks[i].date);
+        const dateOnly = new Date(date.valueOf() + date.getTimezoneOffset() * 60 * 1000)
+        const formattedDate = format(dateOnly, 'P');
+        taskDate.textContent = formattedDate;
         taskElementDiv.appendChild(taskDate);
 
         const taskRemove = document.createElement('button');
