@@ -29,7 +29,8 @@ The Odin Project createing a To-Do-List
 * Array of ToDos
 * UI to add a ToDO
 * Function to return array
-*  
+*   How/where to download your program
+* Any modifications needed to be made to files/folders 
 
 ### Executing program
 
